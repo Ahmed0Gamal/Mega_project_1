@@ -35,7 +35,7 @@
 /**************************CORE PERIPHERAL*****************************************/
 #define NVIC_BASE_ADDRESS			0xE000E100UL
 #define NVIC_STIR					0xE000EF00UL
-
+#define SCB_BASE_ADDRESS 	        0xE000ED00UL
 
 
 /**
@@ -364,6 +364,23 @@ typedef struct{
 	volatile uint32_t STK_CALIB;
 
 }MSTK_RegDef_t;
+
+typedef struct{
+	volatile uint32_t SCB_ACTLR ;
+	volatile uint32_t SCB_CPUID ;
+	volatile uint32_t SCB_ICSR ;
+	volatile uint32_t SCB_VTOR ;
+	volatile uint32_t SCB_AIRCR ;
+	volatile uint32_t SCB_SCR ;
+	volatile uint32_t SCB_CCR ;
+	volatile uint8_t  SCB_SHPR[12] ;
+	volatile uint32_t SCB_SHCRS ;
+	volatile uint32_t SCB_CFSR ;
+	volatile uint32_t SCB_HFSR ;
+	volatile uint32_t SCB_MMAR ;
+	volatile uint32_t SCB_BFAR ;
+
+}SCB_RegDef_t;
 /******************************* STK Peripheral Definitions 		 *******************************/
 #define STK  		   ((MSTK_RegDef_t*)SysTick_BASE_ADDRESS)
 
@@ -385,5 +402,9 @@ typedef struct
 
 #define NVIC	((volatile NVIC_REG_S*)NVIC_BASE_ADDRESS)
 
+
+
+/******************************* SCB Peripheral Definitions 		 *******************************/
+#define SCB  		   ((SCB_RegDef_t*)SCB_BASE_ADDRESS)
 
 #endif /* INC_STM32F103CX_H_ */
