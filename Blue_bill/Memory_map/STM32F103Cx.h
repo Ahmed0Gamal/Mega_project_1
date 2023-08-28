@@ -42,11 +42,14 @@
  * @brief :Base addresses for APB2 Peripheral : CortexM3 LQFP48
  */
 /**************************GPIOA-->GPIOD*********************************/
-#define GPIOA_BASE_ADDRESS					   		 0x40010800UL
-#define GPIOB_BASE_ADDRESS							 0x40010C00UL
-#define GPIOC_BASE_ADDRESS							 0x40011000UL
-#define GPIOD_BASE_ADDRESS							 0x40011400UL
-#define GPIOE_BASE_ADDRESS							 0x40011800UL
+#define GPIOA_BASE_ADDRESS					   		    0x40010800UL
+#define GPIOB_BASE_ADDRESS							    0x40010C00UL
+#define GPIOC_BASE_ADDRESS							    0x40011000UL
+#define GPIOD_BASE_ADDRESS							    0x40011400UL
+#define GPIOE_BASE_ADDRESS							    0x40011800UL
+#define GPIOF_BASE_ADDRESS 						    	0x40011C00UL
+#define GPIOG_BASE_ADDRESS  					    	0x40012000UL
+
 /**************************AFIO*****************************************/
 
 #define AFIO_BASE_ADDRESS							 0x40010000UL
@@ -100,8 +103,10 @@
 /**************GPIO************************/
 typedef struct
 {
-	volatile uint32_t CRL;
-	volatile uint32_t CRH;
+
+
+
+	volatile uint32_t CR[2];    // Control register
 	volatile uint32_t IDR;
 	volatile uint32_t ODR;
 	volatile uint32_t BSRR;
@@ -273,6 +278,8 @@ typedef struct
 #define GPIOC 				((GPIO_TypeDef_S*) GPIOC_BASE_ADDRESS)
 #define GPIOD 				((GPIO_TypeDef_S*) GPIOD_BASE_ADDRESS)
 #define GPIOE 				((GPIO_TypeDef_S*) GPIOE_BASE_ADDRESS)
+#define GPIOF             	((GPIO_TypeDef_S*) GPIOF_BASE_ADDRESS)
+#define GPIOG             	((GPIO_TypeDef_S*) GPIOG_BASE_ADDRESS)
 
 /*********************RCC****************************************/
 
