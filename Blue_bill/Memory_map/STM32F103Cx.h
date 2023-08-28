@@ -352,15 +352,20 @@ typedef struct
 
 
 /**************SYSTICK*********************************/
-#define SYSTICK_BASE_ADDRESS 0xE000E010
+#define SysTick_BASE_ADDRESS 	0xE000E010UL
 
 /* registers addresses */
-#define STK_CTRL  *((volatile uint32_t*)(SYSTICK_BASE_ADDRESS ))
-#define STK_LOAD  *((uint32_t*)(SYSTICK_BASE_ADDRESS + 0x04))
-#define STK_VALUE *((uint32_t*)(SYSTICK_BASE_ADDRESS + 0x08))
-#define STK_CALIB *((uint32_t*)(SYSTICK_BASE_ADDRESS + 0x0C))
+/******************************* STK Register Definition Structure *******************************/
 
+typedef struct{
+	volatile uint32_t STK_CTRL;
+	volatile uint32_t STK_LOAD;
+	volatile uint32_t STK_VAL;
+	volatile uint32_t STK_CALIB;
 
+}MSTK_RegDef_t;
+/******************************* STK Peripheral Definitions 		 *******************************/
+#define STK  		   ((MSTK_RegDef_t*)SysTick_BASE_ADDRESS)
 
 /***************NIVC***********************************/
 /**
