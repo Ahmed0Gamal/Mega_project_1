@@ -170,65 +170,26 @@ typedef struct {
 }RCC_TypeDef_S;
 
 /**************AFIO************************/
-typedef struct
-{
-	union
-	{
-		volatile uint32_t Reg;
-		struct
-		{
-			uint32_t PIN :3 ;
-			uint32_t PORT: 3;
-			uint32_t EVOE:1 ;
-			uint32_t Reserved0: 25;
+typedef struct{
+	volatile uint32_t AFIO_EVCR ;
+	volatile uint32_t AFIO_MAPR_low_medium_high;
+	volatile uint32_t AFIO_MAPR_connectivity_line_devices ;
+	volatile uint32_t AFIO_EXTICR[4] ;
 
-		}BIT;
-	}EVCR;
-	union
-	{
-		volatile uint32_t Reg;
-		struct
-		{
-			//BIT FIELD REG
-
-		}BIT;
-	}MAPR;
-	volatile uint32_t EXTICR[4];
-	union
-	{
-		volatile uint32_t Reg;
-		struct
-		{
-			//BIT FIELD REG
-
-		}BIT;
-	}RESERVED0_REG;
-	union
-	{
-		volatile uint32_t Reg;
-		struct
-		{
-			//BIT FIELD REG
-
-		}BIT;
-	}MAPR2;
-
-}AFIO_TypeDef_S;
-
+}AFIO_RegDef_t;
 
 
 /**************EXTI************************/
 
-typedef struct
-{
-	volatile uint32_t	IMR;
-	volatile uint32_t	EMR;
-	volatile uint32_t	RTSR;
-	volatile uint32_t	FTSR;
-	volatile uint32_t	SWIER;
-	volatile uint32_t	PR;
+typedef struct{
+	volatile uint32_t EXTI_IMR ;
+	volatile uint32_t EXTI_EMR ;
+	volatile uint32_t EXTI_RTSR ;
+	volatile uint32_t EXTI_FTSR ;
+	volatile uint32_t EXTI_SWIER ;
+	volatile uint32_t EXTI_PR ;
 
-}EXTI_TypeDef_S;
+}EXTI_RegDef_t;
 
 /**************USART***********************/
 typedef struct
@@ -289,13 +250,13 @@ typedef struct
 
 /*********************EXTI****************************************/
 
-#define EXTI ((EXTI_TypeDef_S*)EXTI_BASE_ADDRESS)
-
+#define EXTI  		   ((EXTI_RegDef_t*)EXTI_BASE_ADDRESS)
 
 
 /*********************AFIO****************************************/
 
-#define AFIO 		((AFIO_TypeDef_S*)AFIO_BASE_ADDRESS)
+#define AFIO  		   ((AFIO_RegDef_t*)AFIO_BASE_ADDRESS)
+
 //#define AFIO_EXTI 	((AFIO_EXTI_TypeDef_S*)AFIO_BASE_ADDRESS+0x08)
 
 /***********************USART*******************************************/
