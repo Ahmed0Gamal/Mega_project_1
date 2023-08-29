@@ -60,18 +60,18 @@
 #define USART2_BASE_ADDRESS                         0x40004400UL
 #define USART3_BASE_ADDRESS                         0x40004800UL
 
-
-
+#define SPI2_BASE_ADDRESS							0x40003800UL
 
 /***********************************APB2 BASE ADDRESS*******************************************/
 
 /*EXTI*/
-#define EXTI_BASE_ADDRESS		0x40013C00
+#define EXTI_BASE_ADDRESS							0x40013C00UL
 
 /*SYSCFG*/
 
-#define SYSCFG_BASE_ADDRESS		0x40013800
+#define SYSCFG_BASE_ADDRESS							0x40013800UL
 
+#define SPI1_BASE_ADDRESS							0x40013000UL
 
 
 #define USART1_BASE_ADDRESS                         0x40011000UL
@@ -673,16 +673,34 @@ typedef struct
 }GPIO_REG_S;
 
 
+/*******************************SPI*******************************************/
 typedef struct
 {
-	volatile uint32_t IMR;
-	volatile uint32_t EMR;
-	volatile uint32_t RTSR;
-	volatile uint32_t FTSR;
-	volatile uint32_t SWIER;
-	volatile uint32_t PR;
 
-}EXTI_REG_S;
+	volatile	uint32_t CR1;
+	volatile	uint32_t CR2;
+	volatile	uint32_t SR;
+	volatile	uint32_t DR;
+	volatile	uint32_t CRCPR;
+	volatile	uint32_t RXCRCR;
+	volatile	uint32_t TXCRCR;
+	volatile	uint32_t I2SCFGR;
+	volatile	uint32_t I2SPR;
+
+}SPI_TypeDef_S;
+
+
+
+/******************************* EXTI Register Definition Structure *******************************/
+typedef struct{
+	uint32_t EXTI_IMR;
+	uint32_t EXTI_EMR;
+	uint32_t EXTI_RTSR;
+	uint32_t EXTI_FTSR;
+	uint32_t EXTI_SWIER;
+	uint32_t EXTI_PR;
+
+}EXTI_RegDef_t;
 
 typedef struct
 {
@@ -772,9 +790,6 @@ typedef struct
 
 
 
-
-
-
 typedef struct
 {
 	uint32_t LISR;		/*DMA low interrupt status register (DMA_LISR)*/
@@ -806,7 +821,7 @@ typedef struct
 
 
 
-#define EXTI			((EXTI_REG_S*)EXTI_BASE_ADDRESS)
+#define EXTI			((EXTI_RegDef_t*)EXTI_BASE_ADDRESS)
 
 
 #define SYSCFG			((SYSCFG_REG_S*)SYSCFG_BASE_ADDRESS)
@@ -820,6 +835,12 @@ typedef struct
 #define USART1	((USART_TypeDef_S*)USART1_BASE_ADDRESS)
 #define USART2	((USART_TypeDef_S*)USART2_BASE_ADDRESS)
 #define USART3	((USART_TypeDef_S*)USART3_BASE_ADDRESS)
+
+
+#define SPI1	((SPI_TypeDef_S*)SPI1_BASE_ADDRESS)
+#define SPI2	((SPI_TypeDef_S*)SPI2_BASE_ADDRESS)
+//#define SPI3	((SPI_TypeDef_S*)SPI3_BASE_ADDRESS)
+
 
 
 /**********************************CORE Peripheral*****************************************/
