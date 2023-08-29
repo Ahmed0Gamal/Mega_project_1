@@ -1,0 +1,6 @@
+../STM32F103xx_Drive/RCC_prg.c:11:6:RCC_AHBEnableCLK	1
+../STM32F103xx_Drive/RCC_prg.c:15:6:RCC_AHBDisableCLK	1
+../STM32F103xx_Drive/RCC_prg.c:21:6:RCC_APB1EnableCLK	1
+../STM32F103xx_Drive/RCC_prg.c:26:6:RCC_APB1DisableCLK	1
+../STM32F103xx_Drive/RCC_prg.c:32:6:RCC_APB2EnableCLK	1
+../STM32F103xx_Drive/RCC_prg.c:37:6:RCC_APB2DisableCLK	1
