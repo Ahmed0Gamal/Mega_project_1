@@ -40,9 +40,8 @@
 #define GPIOF_BASE_ADDRESS			0x40021400UL
 #define GPIOG_BASE_ADDRESS			0x40021800UL
 #define GPIOH_BASE_ADDRESS			0x40021C00UL
-
-#define DMA1_BASE_ADDRESS			0x40026000UL
-#define DMA2_BASE_ADDRESS			0x40026400UL
+#define DMA1_BASE_ADDRESS   		0x40026000UL 
+#define DMA2_BASE_ADDRESS   		0x40026400UL 
 
 /***********************************AHB2 BASE ADDRESS*******************************************/
 
@@ -790,20 +789,22 @@ typedef struct
 
 
 
-typedef struct
-{
-	uint32_t LISR;		/*DMA low interrupt status register (DMA_LISR)*/
-	uint32_t HISR;		/*DMA high interrupt status register (DMA_HISR)*/
-	uint32_t LIFCR;		/*DMA low interrupt flag clear register (DMA_LIFCR)*/
-	uint32_t HIFCR; 	/*DMA high interrupt flag clear register (DMA_HIFCR)*/
-	uint32_t SxCR[7];   /*DMA stream x configuration register (DMA_SxCR) From Stream0 -> Stream7*/
-	uint32_t SxNDTR[7]; /*DMA stream x number of data register (DMA_SxNDTR)*/
-	uint32_t SxPAR[7];	/*DMA stream x peripheral address register (DMA_SxPAR)*/
-	uint32_t SxM0AR[7]; /*DMA stream x memory 0 address register*/
-	uint32_t SxM1AR[7];	/*DMA stream x memory 1 address register(DMA_SxM1AR)*/
-	uint32_t SxFCR[7];	/*DMA stream x FIFO control register (DMA_SxFCR)*/
+/******************************* DMA Register Definition Structure *******************************/
+typedef struct{
+	uint32_t DMA_SxCR;
+	uint32_t DMA_SxNDTR;
+	uint32_t DMA_SxPAR;
+	uint32_t DMA_SxM0AR;
+	uint32_t DMA_SxM1AR;
+	uint32_t DMA_SxFCR;	
+}STREAM_RegDef_t;
 
-}DMA_REG_S;
+typedef struct{
+	uint32_t DMA_LISR[2];
+	uint32_t DMA_LIFCR[2];
+	STREAM_RegDef_t DMA_STREAM[7];
+	
+}DMA_RegDef_t;
 
 /////////////////////////////////*Peripheral *//////////////////////////////////////////////
 
@@ -849,7 +850,10 @@ typedef struct
 #define SCB_AIRCR		*(volatile uint32_t*)SCB_BASE_ADDRESS
 #define SYSTICK			((volatile SYSTICK_REG_S*)SYSTICK_BASE_ADDRESS)
 
+/******************************* DMA Peripheral Definitions 		 *******************************/
 
+#define  DMA1  	  	   ((DMA_RegDef_t*)DMA1_BASE_ADDRESS)
+#define  DMA2  	       ((DMA_RegDef_t*)DMA2_BASE_ADDRESS)
 
 
 
