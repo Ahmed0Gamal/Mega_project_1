@@ -91,11 +91,7 @@ typedef enum {
 	UNLOCKED = 0,   // GPIO port can be modified
 	LOCKED,         // GPIO port is locked until next reset
 } GPIO_LCK_t;
-typedef enum {
-	RESET,
-	SET ,        // Set bit
-	// Reset bit
-} GPIO_BS_t;
+
 typedef struct
 {
 	GPIO_Port_t PIN_Port;
