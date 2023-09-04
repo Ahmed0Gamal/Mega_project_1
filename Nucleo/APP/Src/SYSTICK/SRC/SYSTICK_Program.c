@@ -7,11 +7,11 @@
 #include <stdint.h>
 #include "SYSTICK/INC/SYSTICK_Private.h"
 #include "BIT_MATH.h"
-#include "ErrType.h"
+#include "Std_types/ErrType.h"
 
 
-#include "STM32F446xx.h"
-#include "SYSTICK_Interface.h"
+#include "Memory_map/STM32F446xx.h"
+#include "SYSTICK/INC/SYSTICK_Interface.h"
 
 
 

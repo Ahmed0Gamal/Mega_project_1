@@ -5,10 +5,10 @@
  *  Author: Khooly
  */ 
 
-#include "I2C_Interface.h"
+#include "I2C/INC/i2c_driver.h"
 
-#include "Rtc_Private.h"
-#include "Rtc_Interface.h"
+#include "RTC/INC/Rtc_Private.h"
+#include "RTC/INC/Rtc_Interface.h"
 
 void RTC_Init(void)
 {

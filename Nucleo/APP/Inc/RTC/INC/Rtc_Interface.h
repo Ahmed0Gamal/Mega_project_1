@@ -27,18 +27,18 @@
 /************************************ USER DEFINED *************************************/
 typedef struct
 {
-	u8 date;
-	u8 month;
-	u8 year;
-	u8 day;
+	uint8_t date;
+	uint8_t month;
+	uint8_t year;
+	uint8_t day;
 }RTC_Date_t;
 
 typedef struct
 {
-	u8 seconds;
-	u8 minuts;
-	u8 hours;
-	u8 time_format;
+	uint8_t seconds;
+	uint8_t minuts;
+	uint8_t hours;
+	uint8_t time_format;
 }RTC_Time_t;
 /***************************************************************************************/
 /************************************* PROTOTYPES **************************************/

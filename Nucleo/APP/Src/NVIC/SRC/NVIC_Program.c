@@ -10,13 +10,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BIT_MATH.h"
-#include "ErrType.h"
+#include "Std_types/ErrType.h"
 
-#include "NVIC_Private.h"
-#include "STM32F446xx.h"
-#include "NVIC_Interface.h"
+#include "NVIC/INC/NVIC_Private.h"
+#include "Memory_map/STM32F446xx.h"
+#include "NVIC/INC/NVIC_Interface.h"
 
-#include "SCB_Interface.h"
+#include "SCB/INC/SCB_Interface.h"
 
 /**
  * @brief  : Function used For Enable IRQ Peripheral

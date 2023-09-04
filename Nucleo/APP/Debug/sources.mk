@@ -25,9 +25,9 @@ SUBDIRS := \
 Src/DMA/Src \
 Src/EXTI/SRC \
 Src/GPIO/SRC \
+Src/I2C/SRC \
 Src/NVIC/SRC \
 Src/RCC/SRC \
-Src/RTC \
 Src/RTC/SRC \
 Src/SCB/SRC \
 Src/SPI/SRC \

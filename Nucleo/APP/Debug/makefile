@@ -16,9 +16,9 @@ RM := rm -rf
 -include Src/SPI/SRC/subdir.mk
 -include Src/SCB/SRC/subdir.mk
 -include Src/RTC/SRC/subdir.mk
--include Src/RTC/subdir.mk
 -include Src/RCC/SRC/subdir.mk
 -include Src/NVIC/SRC/subdir.mk
+-include Src/I2C/SRC/subdir.mk
 -include Src/GPIO/SRC/subdir.mk
 -include Src/EXTI/SRC/subdir.mk
 -include Src/DMA/Src/subdir.mk

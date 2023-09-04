@@ -1,6 +1,0 @@
-../Src/RCC/SRC/RCC_prg.c:9:6:RCC_AHB1EnableCLK	16	static
-../Src/RCC/SRC/RCC_prg.c:13:6:RCC_AHB1DisableCLK	16	static
-../Src/RCC/SRC/RCC_prg.c:19:6:RCC_APB1EnableCLK	16	static
-../Src/RCC/SRC/RCC_prg.c:24:6:RCC_APB1DisableCLK	16	static
-../Src/RCC/SRC/RCC_prg.c:30:6:RCC_APB2EnableCLK	16	static
-../Src/RCC/SRC/RCC_prg.c:35:6:APB2DisableCLK	16	static

@@ -1,7 +1,0 @@
-SPI_Program.c:35:9:SPI_Init	6
-SPI_Program.c:115:9:SPI_DeInit	3
-SPI_Program.c:140:9:SPI_U16SendData	3
-SPI_Program.c:166:9:SPI_U16RecieveData	3
-SPI_Program.c:191:9:SPI_U16TXRX	5
-SPI_Program.c:212:6:SPI1_IRQHandler	1
-SPI_Program.c:223:6:SPI2_IRQHandler	1

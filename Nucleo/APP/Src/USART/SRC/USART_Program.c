@@ -17,8 +17,8 @@
 #include "Memory_map/STM32F446xx.h"
 
 
-#include "USART_Private.h"
-#include "USART_Interface.h"
+#include "USART/INC/USART_Private.h"
+#include "USART/INC/USART_Interface.h"
 
 
 #define RCC_GPIOA_CLCK_EN()			(RCC->AHB1ENR.Reg |=1<<0)
@@ -169,9 +169,12 @@ UART_ERR_Statue USART_Init( USART_HandleTypeDef* Huart)
 	case USART_OVERSAMPLE_16:
 
 		USART[Huart->USART_SELECTION]->CR1 |= (Huart->OVER8 );
+		break;
 	case USART_OVERSAMPLE_8:
 		USART[Huart->USART_SELECTION]->CR1 |= (Huart->OVER8 );
-	default:
+		break;
+
+
 
 
 	}
