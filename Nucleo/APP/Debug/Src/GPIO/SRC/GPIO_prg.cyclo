@@ -1,0 +1,4 @@
+GPIO_prg.c:27:9:GPIO_u8PinInit	7
+GPIO_prg.c:82:9:GPIO_vSetOutputPinValue	5
+GPIO_prg.c:114:9:GPIO_vToggleOutputPinValue	3
+GPIO_prg.c:138:9:MGPIO_vReadInputPinValue	3
