@@ -13,9 +13,9 @@
 void RTC_Init(void)
 {
 	/* I2C must be configured in standard speed mode, ACK must be enabled and SCL/SDA must be open drain pulled up */
-	I2C_Init();
+	/*I2C_Init();
 	/* Try to comment this delay and see the response */
-	_delay_ms(500);
+	/*_delay_ms(500);
 	/* clock is halted (by default CH = 1) (CH bit must be set zero) */
 	RTC_Write(0, RTC_ADDR_SEC);
 	return;
@@ -111,13 +111,13 @@ static void RTC_Write(uint8_t Copy_u8Value, uint8_t Copy_u8RegAddress)
 static uint8_t RTC_Read(uint8_t Copy_u8RegAddress)
 {
 	uint8_t Read_Value = 0;
-	I2C_Start();											/* Start Condition */
-	I2C_Write_Address(RTC_I2C_ADDRESS);         		    /* Send the Slave Address */
-	I2C_Write_Data(Copy_u8RegAddress);               	    /* Send the RTC Register No. that you want to point on */
-	I2C_Repeated_Start();                               	/* Send Repeated Start */
-	I2C_Read_Addresss(RTC_I2C_ADDRESS);    		        	/* Send the Slave Address again with R/W bit = R */
-	Read_Value = I2C_Read_Data();							/* Read the Data from the Register previously set */
-	I2C_Stop();												/* Send Stop Condition */
+	/*I2C_Start();											/* Start Condition */
+	/*I2C_Write_Address(RTC_I2C_ADDRESS);         		    /* Send the Slave Address */
+	/*I2C_Write_Data(Copy_u8RegAddress);               	    /* Send the RTC Register No. that you want to point on */
+	/*I2C_Repeated_Start();                               	/* Send Repeated Start */
+	/*I2C_Read_Addresss(RTC_I2C_ADDRESS);    		        	/* Send the Slave Address again with R/W bit = R */
+	/*Read_Value = I2C_Read_Data();							/* Read the Data from the Register previously set */
+	/*I2C_Stop();												/* Send Stop Condition */
 	
 	return Read_Value;
 }

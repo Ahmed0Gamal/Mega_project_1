@@ -855,10 +855,174 @@ typedef struct{
 
 
 
+/**
+ * @brief Peripheral register definition structure for I2C.
+ */
+typedef struct
+{
+    volatile uint32_t CR1;          /**< @brief I2C control register 1          Address offset 0x00 */
+    volatile uint32_t CR2;          /**< @brief I2C control register 2          Address offset 0x04 */
+    volatile uint32_t OAR1;         /**< @brief I2C own address register 1      Address offset 0x08 */
+    volatile uint32_t OAR2;         /**< @brief I2C own address register 2      Address offset 0x0C */
+    volatile uint32_t DR;           /**< @brief I2C data register               Address offset 0x10 */
+    volatile uint32_t SR1;          /**< @brief I2C status register 1           Address offset 0x14 */
+    volatile uint32_t SR2;          /**< @brief I2C status register 2           Address offset 0x18 */
+    volatile uint32_t CCR;          /**< @brief I2C clock control register      Address offset 0x1C */
+    volatile uint32_t TRISE;        /**< @brief I2C TRISE register              Address offset 0x20 */
+    volatile uint32_t FLTR;         /**< @brief I2C FLTR register               Address offset 0x24 */
+}I2C_RegDef_t;
+
+
+
+
+#define AHB1_BASEADDR       0x40020000U     /**< @brief Base addr of peripheral connected to AHB1 bus */
+#define RCC_BASEADDR        (AHB1_BASEADDR + 0x3800)    /**< @brief Base address of RCC */
+#define RCC_struct        	((RCC_RegDef_t*)RCC_BASEADDR)           /**< @brief RCC base addr reg definition */
+/**
+ * @name Clock enable macros for I2Cx peripheral.
+ * @{
+ */
+#define I2C1_PCLK_EN()      (RCC_struct->APB1ENR |= (1 << 21)) /**< @brief Clock enable for I2C1 */
+#define I2C2_PCLK_EN()      (RCC_struct->APB1ENR |= (1 << 22)) /**< @brief Clock enable for I2C2 */
+#define I2C3_PCLK_EN()      (RCC_struct->APB1ENR |= (1 << 23)) /**< @brief Clock enable for I2C3 */
+/** @} */
+
+/**
+ * @brief Peripheral register definition structure for RCC.
+ */
+typedef struct
+{
+    volatile uint32_t CR;           /**< @brief RCC clock control register                   Addr off 0x00 */
+    volatile uint32_t PLLCFGR;      /**< @brief RCC PLL configuration register               Addr off 0x04 */
+    volatile uint32_t CFGR;         /**< @brief RCC clock configuration register             Addr off 0x08 */
+    volatile uint32_t CIR;          /**< @brief RCC clock interrupt register                 Addr off 0x0C */
+    volatile uint32_t AHB1RSTR;     /**< @brief RCC AHB1 peripheral reset register           Addr off 0x10 */
+    volatile uint32_t AHB2RSTR;     /**< @brief RCC AHB2 peripheral reset register           Addr off 0x14 */
+    volatile uint32_t AHB3RSTR;     /**< @brief RCC AHB3 peripheral reset register           Addr off 0x18 */
+    uint32_t RESERVED0;             /**< @brief Reserved                                     Addr off 0x1C */
+    volatile uint32_t APB1RSTR;     /**< @brief RCC APB1 peripheral reset register           Addr off 0x20 */
+    volatile uint32_t APB2RSTR;     /**< @brief RCC APB2 peripheral reset register           Addr off 0x24 */
+    uint32_t RESERVED1;             /**< @brief Reserved                                     Addr off 0x28 */
+    uint32_t RESERVED2;             /**< @brief Reserved                                     Addr off 0x2C */
+    volatile uint32_t AHB1ENR;      /**< @brief RCC AHB1 peripheral clock enable register    Addr off 0x30 */
+    volatile uint32_t AHB2ENR;      /**< @brief RCC AHB2 peripheral clock enable register    Addr off 0x34 */
+    volatile uint32_t AHB3ENR;      /**< @brief RCC AHB3 peripheral clock enable register    Addr off 0x38 */
+    uint32_t RESERVED3;             /**< @brief Reserved                                     Addr off 0x3C */
+    volatile uint32_t APB1ENR;      /**< @brief RCC APB1 peripheral clock enable register    Addr off 0x40 */
+    volatile uint32_t APB2ENR;      /**< @brief RCC APB2 peripheral clock enable register    Addr off 0x44 */
+    uint32_t RESERVED4;             /**< @brief Reserved                                     Addr off 0x48 */
+    uint32_t RESERVED5;             /**< @brief Reserved                                     Addr off 0x4C */
+    volatile uint32_t AHB1LPENR;    /**< @brief RCC AHB1 peri clk en in low power mode reg   Addr off 0x50 */
+    volatile uint32_t AHB2LPENR;    /**< @brief RCC AHB2 peri clk en in low power mode reg   Addr off 0x54 */
+    volatile uint32_t AHB3LPENR;    /**< @brief RCC AHB3 peri clk en in low power mode reg   Addr off 0x58 */
+    uint32_t RESERVED6;             /**< @brief Reserved                                     Addr off 0x5C */
+    volatile uint32_t APB1LPENR;    /**< @brief RCC APB1 peri clk en in low power mode reg   Addr off 0x60 */
+    volatile uint32_t APB2LPENR;    /**< @brief RCC APB2 peri clk en in low power mode reg   Addr off 0x64 */
+    uint32_t RESERVED7;             /**< @brief Reserved                                     Addr off 0x68 */
+    uint32_t RESERVED8;             /**< @brief Reserved                                     Addr off 0x6C */
+    volatile uint32_t BDCR;         /**< @brief RCC Backup domain control register           Addr off 0x70 */
+    volatile uint32_t CSR;          /**< @brief RCC clock control & status register          Addr off 0x74 */
+    uint32_t RESERVED9;             /**< @brief Reserved                                     Addr off 0x78 */
+    uint32_t RESERVED10;            /**< @brief Reserved                                     Addr off 0x7C */
+    volatile uint32_t SSCGR;        /**< @brief RCC spread spectrum clk generation reg       Addr off 0x80 */
+    volatile uint32_t PLLI2SCFGR;   /**< @brief RCC PLLI2S configuration register            Addr off 0x84 */
+    volatile uint32_t PLLSAICFGR;   /**< @brief RCC PLL configuration register               Addr off 0x88 */
+    volatile uint32_t DCKCFGR;      /**< @brief RCC dedicated clock configuration register   Addr off 0x8C */
+    volatile uint32_t CKGATENR;     /**< @brief RCC clocks gated enable register             Addr off 0x90 */
+    volatile uint32_t DCKCFGR2;     /**< @brief RCC dedicated clocks configuration reg 2     Addr off 0x94 */
+}RCC_RegDef_t;
+
+
+/**
+ * @name Bit position definition I2C control register 1.
+ * @{
+ */
+#define I2C_CR1_PE          0   /**< @brief Peripheral enable offset */
+#define I2C_CR1_SMBUS       1   /**< @brief SMBus mode offset */
+#define I2C_CR1_SMBTYPE     3   /**< @brief SMBus type offset */
+#define I2C_CR1_ENARP       4   /**< @brief ARP enable offset */
+#define I2C_CR1_ENPEC       5   /**< @brief PEC enable offset */
+#define I2C_CR1_ENGC        6   /**< @brief General call enable offset */
+#define I2C_CR1_NOSTRETCH   7   /**< @brief Clock stretching disable (Slave mode) offset */
+#define I2C_CR1_START       8   /**< @brief Start generation offset */
+#define I2C_CR1_STOP        9   /**< @brief Stop generation offset */
+#define I2C_CR1_ACK         10  /**< @brief Acknowledge enable offset */
+#define I2C_CR1_POS         11  /**< @brief Acknowledge/PEC Position (for data reception) offset */
+#define I2C_CR1_PEC         12  /**< @brief Packet error checking offset */
+#define I2C_CR1_ALERT       13  /**< @brief SMBus alert offset */
+#define I2C_CR1_SWRST       15  /**< @brief Software reset offset */
+/** @} */
+
+/**
+ * @name Bit position definition I2C control register 2.
+ * @{
+ */
+#define I2C_CR2_FREQ        0   /**< @brief Peripheral clock frequency offset */
+#define I2C_CR2_ITERREN     8   /**< @brief Error interrupt enable offset */
+#define I2C_CR2_ITEVTEN     9   /**< @brief Event interrupt enable offset */
+#define I2C_CR2_ITBUFEN     10  /**< @brief Buffer interrupt enable offset */
+#define I2C_CR2_DMAEN       11  /**< @brief DMA requests enable offset */
+#define I2C_CR2_LAST        12  /**< @brief DMA last transfer offset */
+/** @} */
+
+/**
+ * @name Bit position definition I2C status register 1.
+ * @{
+ */
+#define I2C_SR1_SB          0  /**< @brief Start bit (Master mode) offset */
+#define I2C_SR1_ADDR        1  /**< @brief Address sent (master mode)/matched (slave mode) offset */
+#define I2C_SR1_BTF         2  /**< @brief Byte transfer finished offset */
+#define I2C_SR1_ADD10       3  /**< @brief 10-bit header sent (Master mode) offset */
+#define I2C_SR1_STOPF       4  /**< @brief Stop detection (slave mode) offset */
+#define I2C_SR1_RXNE        6  /**< @brief Data register not empty (receivers) offset */
+#define I2C_SR1_TXE         7  /**< @brief Data register empty (transmitters) offset */
+#define I2C_SR1_BERR        8  /**< @brief Bus error offset */
+#define I2C_SR1_ARLO        9  /**< @brief Arbitration lost (master mode) offset */
+#define I2C_SR1_AF          10 /**< @brief Acknowledge failure offset */
+#define I2C_SR1_OVR         11 /**< @brief Overrun/Underrun offset*/
+#define I2C_SR1_PECERR      12 /**< @brief PEC Error in reception offset */
+#define I2C_SR1_TIMEOUT     14 /**< @brief Timeout or Tlow error offset */
+#define I2C_SR1_SMBALERT    15 /**< @brief SMBus alert offset */
+/** @} */
+
+/**
+ * @name Bit position definition I2C status register 2.
+ * @{
+ */
+#define I2C_SR2_MSL         0   /**< @brief Master/slave offset */
+#define I2C_SR2_BUSY        1   /**< @brief Bus busy offset */
+#define I2C_SR2_TRA         2   /**< @brief Transmitter/receiver offset */
+#define I2C_SR2_GENCALL     4   /**< @brief General call address (Slave mode) offset */
+#define I2C_SR2_SMBDEFAULT  5   /**< @brief SMBus device default address (Slave mode) offset */
+#define I2C_SR2_SMBHOST     6   /**< @brief SMBus host header (Slave mode) offset */
+#define I2C_SR2_DUALF       7   /**< @brief Dual flag (Slave mode) offset */
+#define I2C_SR2_PEC         8   /**< @brief Packet error checking register offset */
+/** @} */
+
+/**
+ * @name Bit position definition I2C clock control register.
+ * @{
+ */
+#define I2C_CCR_CCR         0  /**< @brief Clock control register in Fm/Sm mode (Master mode) offset */
+#define I2C_CCR_DUTY        14 /**< @brief Fm mode duty cycle offset */
+#define I2C_CCR_FS          15 /**< @brief I2C master mode selection offset */
+/** @} */
+#define PERIPH_BASEADDR     0x40000000U     /**< @brief Base addr of peripherals */
+#define APB1_BASEADDR       PERIPH_BASEADDR /**< @brief Base addr of peripheral connected to APB1 bus */
+#define I2C1_BASEADDR       (APB1_BASEADDR + 0x5400)    /**< @brief Base address of I2C1 */
+#define I2C2_BASEADDR       (APB1_BASEADDR + 0x5800)    /**< @brief Base address of I2C2 */
+#define I2C3_BASEADDR       (APB1_BASEADDR + 0x5C00)    /**< @brief Base address of I2C3 */
+#define I2C1        ((I2C_RegDef_t*)I2C1_BASEADDR)          /**< @brief I2C1 base addr reg definition */
+#define I2C2        ((I2C_RegDef_t*)I2C2_BASEADDR)          /**< @brief I2C2 base addr reg definition */
+#define I2C3        ((I2C_RegDef_t*)I2C3_BASEADDR)          /**< @brief I2C3 base addr reg definition */
 
 
 
 
 
+#define IRQ_NO_I2C1_EV              31  /**< @brief Interrupt Num for I2C1 EV */
+#define IRQ_NO_I2C1_ER              32  /**< @brief Interrupt Num for I2C1 ER */
+#define IRQ_NO_I2C2_EV              33  /**< @brief Interrupt Num for I2C2 EV */
+#define IRQ_NO_I2C2_ER              34  /**< @brief Interrupt Num for I2C2 ER */
 
 #endif

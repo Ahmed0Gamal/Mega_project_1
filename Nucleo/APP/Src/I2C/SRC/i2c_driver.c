@@ -55,13 +55,48 @@ static void I2C_MasterHandleRXNEInterrupt(I2C_Handle_t* pI2C_Handle);
 /*                                       Public API Definitions                                            */
 /***********************************************************************************************************/
 
+/**
+ * @name Reset macros I2Cx peripheral.
+ * @{
+ */
+/** @brief Reset macro for I2C1 */
+void I2C1_REG_RESET(void)
+	{
+
+		(RCC_struct->APB1RSTR |= (1 << 21));
+		(RCC_struct->APB1RSTR &= ~(1 << 21));
+	}
+
+/** @brief Reset macro for I2C2 */
+void I2C2_REG_RESET()
+	{
+	(RCC_struct->APB1RSTR |= (1 << 22));
+	(RCC_struct->APB1RSTR &= ~(1 << 22));
+	}
+/** @brief Reset macro for I2C3 */
+void I2C3_REG_RESET()
+	{
+	(RCC_struct->APB1RSTR |= (1 << 23));
+	(RCC_struct->APB1RSTR &= ~(1 << 23));
+	}
+
+
+
+
+
+
+
+
+
+
+
 void I2C_Init(I2C_Handle_t* pI2C_Handle){
 
     uint32_t temp = 0;
     uint16_t ccr_value = 0;
 
     /* Enable the peripheral clock */
-    I2C_PerClkCtrl(pI2C_Handle->pI2Cx, ENABLE);
+    I2C_PerClkCtrl(pI2C_Handle->pI2Cx, ENABLE_macro);
 
     /* ACK control bit */
     temp |= (pI2C_Handle->I2C_Config.I2C_ACKControl << I2C_CR1_ACK);
@@ -129,7 +164,7 @@ void I2C_DeInit(I2C_RegDef_t* pI2Cx){
 
 void I2C_PerClkCtrl(I2C_RegDef_t* pI2Cx, uint8_t en_or_di){
 
-    if(en_or_di == ENABLE){
+    if(en_or_di == ENABLE_macro){
         if(pI2Cx == I2C1){
             I2C1_PCLK_EN();
         }
@@ -518,7 +553,7 @@ void I2C_ER_IRQHandling(I2C_Handle_t* pI2C_Handle){
 
 void I2C_Enable(I2C_RegDef_t* pI2Cx, uint8_t en_or_di){
 
-    if(en_or_di == ENABLE){
+    if(en_or_di == ENABLE_macro){
         pI2Cx->CR1 |= (1 << I2C_CR1_PE);
     }
     else{
@@ -553,7 +588,7 @@ void I2C_ManageAcking(I2C_RegDef_t* pI2Cx, uint8_t en_or_di){
 
 void I2C_SlaveEnCallbackEvents(I2C_RegDef_t* pI2Cx, uint8_t en_or_di){
 
-    if(en_or_di == ENABLE){
+    if(en_or_di == ENABLE_macro){
         pI2Cx->CR2 |= (1 << I2C_CR2_ITEVTEN);
         pI2Cx->CR2 |= (1 << I2C_CR2_ITBUFEN);
         pI2Cx->CR2 |= (1 << I2C_CR2_ITERREN);
@@ -578,7 +613,7 @@ void I2C_CloseReceiveData(I2C_Handle_t* pI2C_Handle){
     pI2C_Handle->RxSize = 0;
 
     if(pI2C_Handle->I2C_Config.I2C_ACKControl == I2C_ACK_ENABLE){
-        I2C_ManageAcking(pI2C_Handle->pI2Cx, ENABLE);
+        I2C_ManageAcking(pI2C_Handle->pI2Cx, ENABLE_macro);
     }
 }
 
@@ -633,7 +668,7 @@ static void I2C_ClearADDRFlag(I2C_Handle_t* pI2C_Handle){
         if(pI2C_Handle->TxRxState == I2C_BUSY_IN_RX){
             if(pI2C_Handle->RxSize == 1){
                 /* Disable ACK */
-                I2C_ManageAcking(pI2C_Handle->pI2Cx, DISABLE);
+                I2C_ManageAcking(pI2C_Handle->pI2Cx, DISABLE_macro);
 
                 /* Clear ADDR flag (read SR1, read SR2 */
                 dummy_read = pI2C_Handle->pI2Cx->SR1;
@@ -681,7 +716,7 @@ static void I2C_MasterHandleRXNEInterrupt(I2C_Handle_t* pI2C_Handle){
     if(pI2C_Handle->RxSize > 1){
         if(pI2C_Handle->RxLen == 2){
             /* Clear ACK */
-            I2C_ManageAcking(pI2C_Handle->pI2Cx, DISABLE);
+            I2C_ManageAcking(pI2C_Handle->pI2Cx, DISABLE_macro);
         }
         /* Read DR */
         *pI2C_Handle->pRxBuffer = pI2C_Handle->pI2Cx->DR;
